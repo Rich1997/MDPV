@@ -22,7 +22,7 @@ export default function RootLayout({
                 <link rel="preconnect" href="https://rsms.me/" />
                 <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
             </head>
-            <body className="font-body antialiased">
+            <body className="font-body antialiased selection:bg-primary selection:text-primary-foreground">
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
                     <div className="relative flex min-h-patch flex-col overflow-y-auto">
                         <div className="flex flex-1 flex-col">

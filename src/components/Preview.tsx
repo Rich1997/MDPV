@@ -14,7 +14,7 @@ interface PreviewProps {
 export default function Preview({ markdown, showEditor, onToggleEditor }: PreviewProps) {
     return (
         <div className="h-full w-full flex flex-col">
-            <div className="flex justify-between items-center gap-2 px-4 py-1 border-b bg-card text-card-foreground flex-shrink-0">
+            <div className="flex justify-between items-center gap-2 px-4 py-1 border-b bg-card text-card-foreground flex-shrink-0 select-none">
                 <div>Preview</div>
                 <Button
                     onClick={onToggleEditor}

@@ -47,7 +47,7 @@ export default function Editor({ showPreview, onTogglePreview, value, onChange }
 
     return (
         <div className="h-full w-full flex flex-col">
-            <div className="flex justify-between items-center gap-2 px-4 p-1 border-b bg-card text-card-foreground">
+            <div className="flex justify-between items-center gap-2 px-4 p-1 border-b bg-card text-card-foreground select-none">
                 <div>Editor</div>
                 <div className="flex items-center gap-2">
                     <div className="flex items-center gap-2 text-xs text-muted-foreground pr-2">
@@ -95,6 +95,7 @@ export default function Editor({ showPreview, onTogglePreview, value, onChange }
                         wrap: true,
                         fontFamily: "Space Mono, monospace",
                         scrollPastEnd: true,
+                        mode: "ace/mode/markdown",
                     }}
                 />
             </div>

@@ -1,12 +1,17 @@
 /* Custom Ace Editor Styling - Works for both light and dark modes */
 .ace_gutter {
-    background: var(--card) !important;
+    background: var(--background) !important;
     color: var(--muted-foreground) !important;
     border-right: 1px solid var(--border) !important;
 }
 
 .ace_gutter-active-line {
     background-color: var(--muted) !important;
+    color: var(--foreground) !important;
+}
+
+.ace_gutter-active-line-matches {
+    background-color: var(--accent) !important;
 }
 
 .ace_editor {
@@ -71,7 +76,7 @@
 }
 
 .ace_list {
-    color: var(--chart-3) !important;
+    color: var(--foreground) !important;
 }
 
 .ace_markup.ace_list.ace_heading {
