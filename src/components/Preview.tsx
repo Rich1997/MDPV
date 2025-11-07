@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Sidebar, SidebarClose } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
 
 interface PreviewProps {
     markdown: string;
@@ -25,8 +26,10 @@ export default function Preview({ markdown, showEditor, onToggleEditor }: Previe
                 </Button>
             </div>
             <div className="flex-1 max-h-[calc(100dvh-87px)] py-6 px-4 overflow-auto">
-                <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:font-bold prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-xl prose-h5:text-lg prose-h6:text-base prose-p:text-base prose-a:text-chart-3 prose-a:visited:text-chart-1 prose-code:text-sm prose-pre:bg-accent prose-pre:text-accent-foreground">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown || "*Nothing to preview*"}</ReactMarkdown>
+                <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:font-bold prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-xl prose-h5:text-lg prose-h6:text-base prose-p:text-base prose-a:text-chart-3 prose-a:visited:text-chart-1 prose-code:text-base [&_code:not(.hljs)]:text-primary [&_code:not(.hljs)]:px-1 [&_code:not(.hljs)]:py-0.5 [&_code:not(.hljs)]:bg-card [&_code:not(.hljs)]:rounded-lg prose-pre:bg-card prose-pre:text-card-foreground">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
+                        {markdown}
+                    </ReactMarkdown>
                 </div>
             </div>
         </div>

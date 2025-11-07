@@ -1,0 +1,75 @@
+.hljs-attr,
+.hljs-attribute {
+    color: var(--chart-3);
+}
+
+.hljs-string,
+.hljs-title.class_.inherited__,
+.hljs-literal {
+    color: var(--chart-3);
+}
+
+.hljs-number {
+    color: var(--chart-2);
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+    color: var(--primary);
+}
+
+.hljs-type,
+.hljs-class {
+    color: var(--chart-4);
+}
+
+.hljs-function {
+    color: var(--primary);
+}
+
+.hljs-params {
+    color: var(--foreground);
+}
+
+.hljs-keyword {
+    color: var(--chart-1);
+}
+
+.hljs-name {
+    color: var(--chart-3);
+}
+
+.hljs-tag {
+    color: var(--chart-1);
+}
+
+.hljs-title {
+    color: var(--primary);
+}
+
+.hljs-attr {
+    color: var(--chart-3);
+}
+
+.hljs-symbol,
+.hljs-bullet {
+    color: var(--chart-2);
+}
+
+.hljs-comment {
+    color: var(--muted-foreground);
+}
+
+.hljs-code {
+    color: var(--chart-3);
+}
+
+.hljs-addition {
+    background-color: rgba(39, 174, 96, 0.1);
+    color: var(--chart-4);
+}
+
+.hljs-deletion {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: var(--destructive);
+}

@@ -77,6 +77,23 @@ const config = {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
             },
+            // This fixes the backtick render issue, do not remove the ::before and ::after
+            typography: {
+                DEFAULT: {
+                    css: {
+                        "code::before": {
+                            content: "",
+                        },
+                        "code::after": {
+                            content: "",
+                        },
+                        code: {
+                            wordWrap: "break-word",
+                            boxDecorationBreak: "clone",
+                        },
+                    },
+                },
+            },
         },
     },
     plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
