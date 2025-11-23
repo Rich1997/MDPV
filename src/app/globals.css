@@ -221,3 +221,12 @@ body {
     transform: scale(2);
     transition: transform 0.3s ease-in-out;
 }
+
+.h-full.w-full.rounded-\[inherit\] > div > div {
+    width: 239px !important;
+}
+
+.h-full.w-full.rounded-\[inherit\] ul {
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+}

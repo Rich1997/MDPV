@@ -24,54 +24,36 @@ export default function IconSidebar({ activeTab, onTabChange }: IconSidebarProps
         }
     };
 
+    const tabs = [
+        { id: "files", icon: Files, title: "Files" },
+        { id: "outline", icon: ListTree, title: "Outline" },
+        { id: "trash", icon: Trash2, title: "Trash" },
+    ];
+
     return (
         <div className="hidden md:flex flex-col items-center justify-between h-full w-12 bg-background py-4 z-20 border-r">
             <div className="flex flex-col">
-                <div
-                    className={
-                        activeTab === "files"
-                            ? "border-l-2 border-primary h-12 w-12 flex items-center justify-center"
-                            : "h-12 w-12 flex items-center justify-center text-muted-foreground"
-                    }
-                >
-                    <button
-                        onClick={() => handleTabClick("files")}
-                        title="Files"
-                        className={activeTab === "files" ? "-ml-0.5" : ""}
-                    >
-                        <Files size={24} />
-                    </button>
-                </div>
-                <div
-                    className={
-                        activeTab === "outline"
-                            ? "border-l-2 border-primary h-12 w-12 flex items-center justify-center"
-                            : "h-12 w-12 flex items-center justify-center text-muted-foreground"
-                    }
-                >
-                    <button
-                        onClick={() => handleTabClick("outline")}
-                        title="Document Outline"
-                        className={activeTab === "outline" ? "-ml-0.5" : ""}
-                    >
-                        <ListTree size={24} />
-                    </button>
-                </div>
-                <div
-                    className={
-                        activeTab === "trash"
-                            ? "border-l-2 border-primary h-12 w-12 flex items-center justify-center"
-                            : "h-12 w-12 flex items-center justify-center text-muted-foreground"
-                    }
-                >
-                    <button
-                        onClick={() => handleTabClick("trash")}
-                        title="Trash"
-                        className={activeTab === "trash" ? "-ml-0.5" : ""}
-                    >
-                        <Trash2 size={24} />
-                    </button>
-                </div>
+                {tabs.map((tab) => {
+                    const Icon = tab.icon;
+                    return (
+                        <div
+                            key={tab.id}
+                            className={
+                                activeTab === tab.id
+                                    ? "border-l-2 border-primary h-12 w-12 flex items-center justify-center"
+                                    : "h-12 w-12 flex items-center justify-center text-muted-foreground"
+                            }
+                        >
+                            <button
+                                onClick={() => handleTabClick(tab.id as SidebarTab)}
+                                title={tab.title}
+                                className={activeTab === tab.id ? "-ml-0.5" : ""}
+                            >
+                                <Icon size={24} className="hover:text-foreground" />
+                            </button>
+                        </div>
+                    );
+                })}
             </div>
             <Button
                 variant={activeTab === "settings" ? "default" : "ghost"}

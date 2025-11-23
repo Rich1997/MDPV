@@ -27,7 +27,7 @@ export default function Home() {
             </div>
             <div className="flex flex-1 overflow-hidden">
                 <IconSidebar activeTab={activeTab} onTabChange={setActiveTab} />
-                <AppSidebar />
+                <AppSidebar activeTab={activeTab} markdown={markdown} />
                 <div className="flex flex-1 flex-col overflow-hidden">
                     <div className="flex-1 overflow-hidden text-sm">
                         <ResizablePanelGroup
