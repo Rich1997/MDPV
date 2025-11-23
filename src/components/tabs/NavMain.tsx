@@ -20,10 +20,11 @@ export default function NavMain({ items, onItemClick }: NavMainProps) {
             {items.map((item) => (
                 <div key={item.id} title={item.title}>
                     <SidebarMenuItem>
-                        <SidebarMenuButton onClick={() => onItemClick?.(item.id)}>
-                            <span className="text-muted-foreground hover:text-foreground">
-                                {item.title}
-                            </span>
+                        <SidebarMenuButton
+                            onClick={() => onItemClick?.(item.id)}
+                            className="text-muted-foreground hover:text-foreground"
+                        >
+                            <span>{item.title}</span>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                     {item.items?.length ? (

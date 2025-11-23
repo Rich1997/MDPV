@@ -230,3 +230,8 @@ body {
     padding-right: 0 !important;
     margin-right: 0 !important;
 }
+
+.h-full.w-full.rounded-\[inherit\] li:hover ~ ul {
+    border-color: color-mix(in srgb, var(--muted-foreground), transparent 50%);
+}
+
