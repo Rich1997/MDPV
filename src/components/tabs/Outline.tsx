@@ -6,6 +6,7 @@ interface OutlineItem {
     title: string;
     url: string;
     id: string;
+    level: number;
     items?: OutlineItem[];
 }
 
@@ -17,7 +18,6 @@ export default function Outline({ markdown }: OutlineProps) {
     const outlineData = useMemo(() => {
         const headingRegex = /^(#{1,6})\s+(.+)$/gm;
         const matches = Array.from(markdown.matchAll(headingRegex));
-
         const headings = matches.map((match) => {
             const level = match[1].length;
             const text = match[2].trim();
@@ -25,52 +25,53 @@ export default function Outline({ markdown }: OutlineProps) {
                 .toLowerCase()
                 .replace(/[^\w\s-]/g, "")
                 .replace(/\s+/g, "-");
-
             return { level, text, id };
         });
 
-        const buildTree = (
-            items: typeof headings,
-            parentLevel: number = 0
-        ): { items: OutlineItem[]; count: number } => {
+        const buildTree = (items: typeof headings): OutlineItem[] => {
+            const stack: { level: number; item: OutlineItem }[] = [];
             const result: OutlineItem[] = [];
-            let i = 0;
 
-            while (i < items.length) {
-                const item = items[i];
+            for (const heading of items) {
+                const newItem: OutlineItem = {
+                    title: heading.text,
+                    url: `#${heading.id}`,
+                    id: heading.id,
+                    level: heading.level,
+                };
 
-                if (item.level === parentLevel + 1) {
-                    const children = buildTree(items.slice(i + 1), item.level);
-                    result.push({
-                        title: item.text,
-                        url: `#${item.id}`,
-                        id: item.id,
-                        items: children.items.length > 0 ? children.items : undefined,
-                    });
-                    i += children.count + 1;
-                } else if (item.level > parentLevel + 1) {
-                    i++;
-                } else {
-                    break;
+                while (stack.length > 0 && stack[stack.length - 1].level >= heading.level) {
+                    stack.pop();
                 }
+
+                if (stack.length === 0) {
+                    result.push(newItem);
+                } else {
+                    let parent = stack[stack.length - 1].item;
+                    const parentLevel = stack[stack.length - 1].level;
+                    
+                    if (!parent.items) {
+                        parent.items = [];
+                    }
+                    parent.items.push(newItem);
+                }
+
+                stack.push({ level: heading.level, item: newItem });
             }
 
-            return { items: result, count: i };
+            return result;
         };
 
-        const tree = buildTree(headings);
-        return { navMain: tree.items };
+        return { navMain: buildTree(headings) };
     }, [markdown]);
 
     const handleHeadingClick = (id: string) => {
         const previewContainer = document.querySelector("[data-preview-scroll]");
         const element = document.getElementById(id);
-
         if (element && previewContainer) {
             const elementTop = element.getBoundingClientRect().top;
             const containerTop = previewContainer.getBoundingClientRect().top;
             const scrollPosition = previewContainer.scrollTop + (elementTop - containerTop);
-
             previewContainer.scrollTo({
                 top: scrollPosition,
                 behavior: "smooth",
