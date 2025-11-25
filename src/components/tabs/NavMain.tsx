@@ -31,11 +31,7 @@ export default function NavMain({ items, onItemClick }: NavMainProps) {
             );
 
             for (let i = 0; i < wrapsNeeded; i++) {
-                content = (
-                    <SidebarMenuSub key={`${item.id}-wrap-${i}`}>
-                        {content}
-                    </SidebarMenuSub>
-                );
+                content = <SidebarMenuSub key={`${item.id}-wrap-${i}`}>{content}</SidebarMenuSub>;
             }
 
             if (item.items?.length) {
@@ -43,9 +39,7 @@ export default function NavMain({ items, onItemClick }: NavMainProps) {
                 content = (
                     <div key={item.id}>
                         {content}
-                        <SidebarMenuSub>
-                            {childrenContent}
-                        </SidebarMenuSub>
+                        <SidebarMenuSub>{childrenContent}</SidebarMenuSub>
                     </div>
                 );
             }
@@ -53,9 +47,5 @@ export default function NavMain({ items, onItemClick }: NavMainProps) {
         });
     };
 
-    return (
-        <div>
-            {renderItems(items)}
-        </div>
-    );
+    return <div>{renderItems(items)}</div>;
 }

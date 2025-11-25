@@ -39,7 +39,7 @@ export default function IconSidebar({ activeTab, onTabChange }: IconSidebarProps
                         <div
                             key={tab.id}
                             className={
-                                activeTab === tab.id
+                                activeTab === tab.id && open
                                     ? "border-l-2 border-primary h-12 w-12 flex items-center justify-center"
                                     : "h-12 w-12 flex items-center justify-center text-muted-foreground"
                             }
@@ -47,7 +47,7 @@ export default function IconSidebar({ activeTab, onTabChange }: IconSidebarProps
                             <button
                                 onClick={() => handleTabClick(tab.id as SidebarTab)}
                                 title={tab.title}
-                                className={activeTab === tab.id ? "-ml-0.5" : ""}
+                                className={activeTab === tab.id && open ? "-ml-0.5" : ""}
                             >
                                 <Icon size={24} className="hover:text-foreground" />
                             </button>
