@@ -235,3 +235,32 @@ body {
     border-color: color-mix(in srgb, var(--muted-foreground), transparent 50%);
 }
 
+@media (max-width: 768px) {
+    [data-panel-resize-handle-id] {
+        position: relative;
+    }
+
+    [data-panel-resize-handle-id]::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 88px;
+        z-index: 10;
+    }
+}
+
+/* Visual feedback when dragging */
+[data-panel-resize-handle-id][data-resize-handle-state="drag"]::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    background-color: var(--primary) !important;
+    z-index: 5;
+}
